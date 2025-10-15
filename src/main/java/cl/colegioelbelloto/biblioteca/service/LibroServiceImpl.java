@@ -22,7 +22,7 @@ public class LibroServiceImpl implements ILibroService{
 
     @Override
     public List<Libro> AllLibros() {
-        return List.of();
+        return libroRepository.findAll();
     }
 
     @Override
