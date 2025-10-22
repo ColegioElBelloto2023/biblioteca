@@ -10,8 +10,10 @@ public interface ILibroService {
 
     List<Libro> AllLibros();
 
-    Libro updateLibro(Long idLibro);
+    Libro updateLibro(Long idLibro, Libro libroActualizado);
 
     void deleteLibro(Long idLibro);
+
+    Libro findByIdLibro(Long id);
 
 }

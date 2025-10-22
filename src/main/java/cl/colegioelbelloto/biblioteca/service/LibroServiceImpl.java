@@ -25,13 +25,29 @@ public class LibroServiceImpl implements ILibroService{
         return libroRepository.findAll();
     }
 
+
+
     @Override
-    public Libro updateLibro(Long idLibro) {
-        return null;
+    public Libro updateLibro(Long idLibro, Libro libroActualizado) {
+        return libroRepository.findById(idLibro)
+                .map(libroExistente -> {
+                    libroExistente.setTitulo(libroActualizado.getTitulo());
+                    libroExistente.setAutor(libroActualizado.getAutor());
+                    libroExistente.setIsbn(libroActualizado.getIsbn());
+                    libroExistente.setAnioPublicacion(libroActualizado.getAnioPublicacion());
+                    libroExistente.setStock(libroActualizado.getStock());
+                    return libroRepository.save(libroExistente);
+                })
+                .orElse(null);
     }
 
     @Override
     public void deleteLibro(Long idLibro) {
+        libroRepository.deleteById(idLibro);
+    }
 
+    @Override
+    public Libro findByIdLibro(Long id) {
+        return libroRepository.findById(id).orElse(null);
     }
 }

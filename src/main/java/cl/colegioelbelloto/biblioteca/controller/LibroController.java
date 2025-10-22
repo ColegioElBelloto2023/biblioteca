@@ -63,4 +63,25 @@ public class LibroController {
         return "lista_libros";
     }
 
+    @GetMapping("/eliminar/{id}")
+    public String eliminarLibro(@PathVariable Long id, Model model) {
+        libroService.deleteLibro(id);
+        return "redirect:/libros/lista";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
+        Libro libro = libroService.findByIdLibro(id);
+        model.addAttribute("libro", libro);
+        return "libro_form"; // reutiliza el mismo formulario
+    }
+
+    @PostMapping("/actualizar/{id}")
+    public String actualizarLibro(@PathVariable Long id, @ModelAttribute Libro libro) {
+        libroService.updateLibro(id, libro);
+        return "redirect:/libros/lista";
+    }
+
+
+
 }

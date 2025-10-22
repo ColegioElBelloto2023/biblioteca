@@ -106,6 +106,7 @@
                         <!-- Form -->
                         <form th:action="@{/libros/guardar}" th:object="${libro}" method="post" id="libroForm">
 
+                            <input type="hidden" th:field="*{idLibro}"/>
                              ISBN Field with Search Button
                             <div class="mb-4">
                                 <label for="isbn" class="form-label">
